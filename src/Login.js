@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "./Login.css"
 import { Button } from '@material-ui/core'
-import { auth, provider } from './firebase'
+import { auth} from './firebase'
 import { useDispatch } from 'react-redux'
 import { login } from './features/userSlice'
 function Login() {
@@ -19,28 +19,25 @@ function Login() {
         if(!name){
             return alert ("please enter the full name")
         }
-        auth.createUserWithEmailAndPassword(email,password)
-        .then((userAuth)=>{
-            userAuth.user.updateProfile({
-                displayName:name,
-                photoURL:profile,
-               
+        
+        auth.createUserWithEmailAndPassword(email,password).then(
+            (userAuth)=>{
+                userAuth.user
+                .updateProfile({
+                    displayName:name,
+                    photoURL:profile
+                })
+                .then(()=>{
+                    dispatch(login({
+                        email:userAuth.user.email,
+                        uid:userAuth.user.uid,
+                        displayName:name,
+                        photoURL:profile
 
-            })
-            .then(()=>{
-               dispatch(login({
-                   email:userAuth.user.email,
-                   uid:userAuth.user.uid,
-                   displayName:name,
-                   photoURL:profile,
-               })) 
-            }).catch(error=>alert(error.message))
-        })
-
-        setPassword("")
-        setEmail("")
-        setName("")
-        setProfile("")
+                    }))
+                })
+            }
+        ).catch((error)=>alert(error.message))
     }
     
     return (
@@ -56,7 +53,7 @@ function Login() {
                 onChange={e=>setName(e.target.value)}
                  />
                 <input 
-                placeholder="enter the profile "
+                placeholder="enter the profile (optional) "
                 value={profile}
                 onChange={e=>setProfile(e.target.value)}
                 />
@@ -74,9 +71,10 @@ function Login() {
                 />
               
               
-            <Button className="login__button" onClick={signin}>Sign In</Button>
-            </form>
+            <Button type='submit' className="login__button" onClick={signin}>Sign In</Button>
             <p>Not a memeber?<span className="login__register" onClick={register}>Register Now</span></p>
+            </form>
+
           
         </div>
     )

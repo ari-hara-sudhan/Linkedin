@@ -12,9 +12,9 @@ function Posts({name,desc,message,photo,timestamp}) {
     return (
         <div className="post">
             <div className="post__header">
-            <Avatar/>
+            <Avatar src={photo}/>
             <div className="post__info">
-                <h2>{name}</h2>
+                <h4>{name}</h4>
                 <p>{desc}</p>
             </div>
            

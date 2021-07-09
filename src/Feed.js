@@ -9,9 +9,12 @@ import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay';
 import Posts from './Posts'
 import db from './firebase'
 import firebase from "firebase"
+import { useSelector } from 'react-redux'
+import { selectUser } from './features/userSlice'
 function Feed() {
     const[input,setInput]=useState()
     const[posts,setPosts]=useState([])
+    const user =useSelector(selectUser)
 
     useEffect(()=>{
         db.collection("posts").orderBy("timestamp","desc").onSnapshot(snapshot=>{
@@ -25,10 +28,10 @@ function Feed() {
     const sendPost=(e)=>{
         e.preventDefault();
         db.collection("posts").add({
-            name:"ahs",
-            desc:"hello from here",
+            name:user.displayName,
+            desc:user.email,
             message:input,
-            photo:"",
+            photo:user.photo,
             timestamp:firebase.firestore.FieldValue.serverTimestamp()
         })
         setInput("");

@@ -7,7 +7,10 @@ import SupervisorAccontIcon from "@material-ui/icons/SupervisorAccount"
 import BusinessCenterIcon from "@material-ui/icons/Business"
 import ChatIcon from "@material-ui/icons/Chat"
 import NotificationIcon from "@material-ui/icons/NotificationImportant"
+import { useSelector } from 'react-redux'
+import { selectUser } from './features/userSlice'
 function Header() {
+    const user =useSelector(selectUser)
     return (
         <div className="header">
             <div className="header__left">
@@ -35,7 +38,7 @@ function Header() {
             title="Notification" Icon={NotificationIcon}
             />
                  <HeaderOptions
-            avatar="https://www.bing.com/th?id=OIP.6nCVjA0S936UiBlDUsov4QAAAA&w=144&h=100&c=8&rs=1&qlt=90&o=6&dpr=1.25&pid=3.1&rm=2" title="ahs dev"
+            avatar={ user && user.photo} title={user&& user.displayName}
             />
             </div>
         </div>
