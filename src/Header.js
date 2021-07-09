@@ -14,8 +14,8 @@ function Header() {
                 <img src="https://www.bing.com/th?id=OIP.Ff1a2zx1DnGg5rppyqq-XwHaHa&w=105&h=105&c=8&rs=1&qlt=90&o=6&dpr=1.25&pid=3.1&rm=2" alt="linkedin"/>
 
                 <div className="header__search">
-                 <SearchIcon/>
-                 <input type="text"/>
+                 <SearchIcon />
+                 <input  placeholder="search" type="text"/>
                 </div>
             </div>
             <div className="header__right">
