@@ -2,6 +2,8 @@ import React from 'react'
 import "./Sidebar.css"
 import { Avatar } from '@material-ui/core'
 function Sidebar() {
+
+  
     return (
         <div className="sidebar">
             <div className="sidebar__top">
@@ -26,6 +28,13 @@ function Sidebar() {
 
             <div className="sidebar__bottom">
             <h3>Recent</h3>
+            <div className="sidebar__recent">
+            <p><span className="sidebar__hash">#</span>programming</p>
+            <p><span className="sidebar__hash">#</span>react.js</p>
+            <p><span className="sidebar__hash">#</span>softwareEnginner</p>
+            <p><span className="sidebar__hash">#</span>developer</p>
+
+        </div>
 
             </div>
         </div>
